@@ -1,4 +1,10 @@
-import "./componentStyles/ExpenseDate.css";
+/**
+ * @author Sylverster kanyane
+ */
+
+import React from "react";
+
+import "./ExpenseStyles/ExpenseDate.css";
 
 function ExpenseDate(props) {
   const month = props.date.toLocaleString("en-US", { month: "long" });
