@@ -3,10 +3,10 @@
  */
 import React, { useState } from "react";
 
-import ExpenseItem from "./ExpenseItem";
 import Card from "../UI/Card";
 import "./ExpenseStyles/Expenses.css";
 import ExpenseFilter from "../Filter/ExpenseFilter";
+import ExpensesList from "./ExpensesList";
 
 function Expenses(props) {
   const [selectedYear, setSelectedYear] = useState("2020");
@@ -19,25 +19,13 @@ function Expenses(props) {
     return expense.date.getFullYear().toString() === selectedYear;
   });
 
-  let expenseContent = <p>No expense found.</p>;
-  if (filterExpenses.length > 0) {
-    expenseContent = filterExpenses.map((expense) => (
-      <ExpenseItem
-        key={expense.id}
-        title={expense.title}
-        amount={expense.amount}
-        date={expense.date}
-      />
-    ));
-  }
-
   return (
     <Card className="expenses">
       <ExpenseFilter
         selected={selectedYear}
         onChangeFilter={yearChangeHandler}
       />
-      {expenseContent}
+      <ExpensesList expenses={filterExpenses} />
     </Card>
   );
 }
